@@ -16,14 +16,14 @@ export const NavHeader = ({ activeSection, handleNavigation }: HeaderProps) => {
   const isHomePage = location.pathname === '/';
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-gradient-to-r from-emerald-50 to-green-50 border-b border-emerald-100 shadow-sm z-40">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleNavigation('home')}>
-            <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-green-700 rounded-full flex items-center justify-center shadow-md">
-              <img src={logo} alt="Grey2Green Logo" className="w-11 h-11" />
+    <nav className="fixed top-1 left-0 right-0 bg-gradient-to-r from-emerald-50 to-green-50 border-b border-emerald-100 shadow-sm z-40">
+      <div className="container mx-auto px-8">
+        <div className="flex items-center justify-between h-24">
+          <div className="flex items-center gap-6 cursor-pointer" onClick={() => handleNavigation('home')}>
+            <div className="w-20 h-20 bg-gradient-to-br from-emerald-600 to-green-700 rounded-full flex items-center justify-center shadow-md">
+              <img src={logo} alt="Grey2Green Logo" className="w-20 h-20" />
             </div>
-            <span className="text-2xl font-bold text-gray-900">Grey<span className="text-emerald-600">2</span>Green</span>
+            <span className="text-4xl font-bold text-gray-900">Grey<span className="text-emerald-600">2</span>Greens</span>
           </div>
 
           <div className="hidden md:flex items-center gap-8">
@@ -79,9 +79,21 @@ export const NavHeader = ({ activeSection, handleNavigation }: HeaderProps) => {
               Blogs
             </button>
             <button
-              onClick={() => handleNavigation('contact')}
-              className="px-8 py-3 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors">
-              Get Involved
+              onClick={() => {
+                if (location.pathname === '/retail-services') {
+                  // If on retail services page, scroll to the consultation form
+                  document.getElementById('get-a-quote')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                  });
+                } else {
+                  // Otherwise, use the default contact navigation
+                  handleNavigation('contact');
+                }
+              }}
+              className="px-8 py-3 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors"
+            >
+              {location.pathname === '/retail-services' ? 'Book Free Consultation' : 'Get Involved'}
             </button>
           </div>
         </div>
