@@ -1,6 +1,9 @@
 import { Users, Sprout, Apple, TreeDeciduous, Leaf, Trees, MapPin, FileText, Shovel, Droplets, BarChart3, Quote, ChevronLeft, ChevronRight, Layers, Network, Mountain, Globe, Heart } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { VolunteerForm } from '../components/VolunteerForm';
+import { CorporatePartnershipForm } from '../components/CorporatePartnershipForm';
+import { DonationModal } from '../components/DonationModal';
+import { TreeAdoptionModal } from '../components/TreeAdoptionModal';
 import { ContactForm } from '../components/ContactForm';
 import { TeamCarousel } from '../components/TeamCarousel';
 import heroVideo from '../assets/Industrial_Suit_Transitions_to_Nature.mp4';
@@ -13,43 +16,47 @@ import roadsideFoodForestImg from '../assets/gallery/roadsidefoodforest.jpg';
 
 export const Home = () => {
   const [showVolunteerForm, setShowVolunteerForm] = useState(false);
+  const [showCorporateForm, setShowCorporateForm] = useState(false);
+  const [showDonationModal, setShowDonationModal] = useState(false);
+  const [showAdoptionModal, setShowAdoptionModal] = useState(false);
+
   const testimonialsRef = useRef<HTMLDivElement>(null);
 
   const testimonials = [
     {
-      name: "Sarah Martinez",
+      name: "Priya Sharma",
       role: "Community Volunteer",
-      location: "Portland, OR",
-      text: "Being part of this food forest project has completely changed how I view urban spaces. Watching our community come together to plant, nurture, and now harvest from our shared forest is incredibly fulfilling.",
-      avatar: "SM"
+      location: "Bangalore, KA",
+      text: "Being part of the Koramangala food forest project has completely changed how I view urban spaces. Watching our community come together to plant, nurture, and now harvest from our shared forest is incredibly fulfilling.",
+      avatar: "PS"
     },
     {
-      name: "James Chen",
-      role: "Master Gardener",
-      location: "Seattle, WA",
-      text: "I've worked in traditional agriculture for years, but food forests opened my eyes to sustainable, regenerative practices. The biodiversity we've created supports countless species while providing fresh food for our neighborhood.",
-      avatar: "JC"
+      name: "Rohan Gupta",
+      role: "Urban Gardener",
+      location: "Delhi, DL",
+      text: "I've been gardening on my terrace for years, but this project opened my eyes to regenerative practices. The biodiversity we've created supports so many birds and insects, all while providing fresh food for our neighbourhood.",
+      avatar: "RG"
     },
     {
-      name: "Maria Rodriguez",
+      name: "Ananya Reddy",
       role: "Education Coordinator",
-      location: "Austin, TX",
-      text: "Teaching children about ecosystems through our food forest has been magical. They see firsthand how companion planting works and understand where food really comes from. It's education that sticks.",
-      avatar: "MR"
+      location: "Hyderabad, TS",
+      text: "Teaching children about ecosystems through our community garden has been magical. They see firsthand how companion planting works and understand where their food *really* comes from. It's education that sticks.",
+      avatar: "AR"
     },
     {
-      name: "David Thompson",
-      role: "Environmental Engineer",
-      location: "Denver, CO",
-      text: "The impact on local microclimates has been remarkable. We've measured temperature reductions, improved air quality, and increased biodiversity. This is how we build resilient communities.",
-      avatar: "DT"
+      name: "Vikram Singh",
+      role: "Sustainability Manager (CSR)",
+      location: "Mumbai, MH",
+      text: "The impact on the local microclimate is remarkable. We've measured temperature reductions and improved air quality. This is how we build resilient cities, and it's a project our company is proud to support.",
+      avatar: "VS"
     },
     {
-      name: "Aisha Patel",
+      name: "Aisha Khan",
       role: "Weekend Volunteer",
-      location: "San Francisco, CA",
+      location: "Pune, MH",
       text: "I started volunteering to connect with nature and found a second family. The knowledge sharing, the physical work, and seeing tangible results every season keeps me coming back weekend after weekend.",
-      avatar: "AP"
+      avatar: "AK"
     }
   ];
 
@@ -64,6 +71,9 @@ export const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white pt-20">
         {showVolunteerForm && <VolunteerForm onClose={() => setShowVolunteerForm(false)} />}
+        {showCorporateForm && <CorporatePartnershipForm onClose={() => setShowCorporateForm(false)} />}
+        {showDonationModal && <DonationModal onClose={() => setShowDonationModal(false)} />}
+        {showAdoptionModal && <TreeAdoptionModal onClose={() => setShowAdoptionModal(false)} />}
         <section className="relative w-full h-[60vh] md:h-[72vh] lg:h-[80vh] overflow-hidden">
             {/* Video background */}
             <video
@@ -580,7 +590,7 @@ export const Home = () => {
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Corporate Partnerships & CSR</h3>
                 <p className="text-gray-600 mb-4 text-sm">Align your business with environmental sustainability. Create lasting impact through strategic partnerships.</p>
                 <button
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                  onClick={() => setShowCorporateForm(true)}
                   className="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors text-sm"
                 >
                   Learn More →
@@ -594,7 +604,7 @@ export const Home = () => {
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Tree Adoption & Sponsorship</h3>
                 <p className="text-gray-600 mb-4 text-sm">Sponsor a tree or an entire grove. Watch your contribution grow and make a tangible difference.</p>
                 <button
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                  onClick={() => setShowAdoptionModal(true)}
                   className="text-green-600 font-semibold hover:text-green-700 transition-colors text-sm"
                 >
                   Adopt a Tree →
@@ -622,7 +632,7 @@ export const Home = () => {
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Donations</h3>
                 <p className="text-gray-600 mb-4 text-sm">Every contribution helps us plant more trees and restore more ecosystems. Support our mission today.</p>
                 <button
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                  onClick={() => setShowDonationModal(true)}
                   className="text-amber-600 font-semibold hover:text-amber-700 transition-colors text-sm"
                 >
                   Donate Now →
@@ -643,36 +653,14 @@ export const Home = () => {
 
                 <p className="text-gray-600 mb-8">We have active food forest projects across multiple cities, each transforming urban spaces into thriving ecosystems.</p>
 
-                <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-6 mb-6">
-                  <div className="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 via-green-100 to-cyan-100">
-                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-emerald-600 rounded-full shadow-lg animate-pulse">
-                        <div className="absolute -top-1 -left-1 w-5 h-5 bg-emerald-400 rounded-full opacity-30 animate-ping"></div>
-                      </div>
-                      <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-green-600 rounded-full shadow-lg animate-pulse" style={{animationDelay: '0.5s'}}>
-                        <div className="absolute -top-1 -left-1 w-5 h-5 bg-green-400 rounded-full opacity-30 animate-ping" style={{animationDelay: '0.5s'}}></div>
-                      </div>
-                      <div className="absolute bottom-1/3 left-1/2 w-3 h-3 bg-cyan-600 rounded-full shadow-lg animate-pulse" style={{animationDelay: '1s'}}>
-                        <div className="absolute -top-1 -left-1 w-5 h-5 bg-cyan-400 rounded-full opacity-30 animate-ping" style={{animationDelay: '1s'}}></div>
-                      </div>
-                      <div className="absolute top-1/2 right-1/4 w-3 h-3 bg-teal-600 rounded-full shadow-lg animate-pulse" style={{animationDelay: '1.5s'}}>
-                        <div className="absolute -top-1 -left-1 w-5 h-5 bg-teal-400 rounded-full opacity-30 animate-ping" style={{animationDelay: '1.5s'}}></div>
-                      </div>
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Trees className="w-12 h-12 text-emerald-600 opacity-20" />
-                    </div>
-                  </div>
-                </div>
-
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 p-4 bg-emerald-50 rounded-lg hover:bg-emerald-100 transition-colors">
                     <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 mb-1">Portland Food Forest</h4>
-                      <p className="text-sm text-gray-600">Portland, Oregon - 7 acres of multi-layered food production</p>
+                      <h4 className="font-bold text-gray-900 mb-1">Noida Vertical Gardens</h4>
+                      <p className="text-sm text-gray-600">Noida, Uttar Pradesh - High-rise greening & urban biodiversity project</p>
                       <p className="text-xs text-emerald-700 font-medium mt-1">Active since 2018</p>
                     </div>
                   </div>
@@ -682,8 +670,8 @@ export const Home = () => {
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 mb-1">Austin Community Grove</h4>
-                      <p className="text-sm text-gray-600">Austin, Texas - Urban transformation project with 200+ volunteers</p>
+                      <h4 className="font-bold text-gray-900 mb-1">Koramangala Green Canopy</h4>
+                      <p className="text-sm text-gray-600">Bangalore, Karnataka - Tech campus & urban food forest initiative</p>
                       <p className="text-xs text-green-700 font-medium mt-1">Active since 2020</p>
                     </div>
                   </div>
@@ -693,8 +681,8 @@ export const Home = () => {
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 mb-1">Seattle Edible Pathways</h4>
-                      <p className="text-sm text-gray-600">Seattle, Washington - Network of connected food forests across neighborhoods</p>
+                      <h4 className="font-bold text-gray-900 mb-1">Ekamra Urban Forest</h4>
+                      <p className="text-sm text-gray-600">Bhubaneswar, Odisha - Heritage species & urban reforestation project</p>
                       <p className="text-xs text-cyan-700 font-medium mt-1">Active since 2019</p>
                     </div>
                   </div>
@@ -704,8 +692,8 @@ export const Home = () => {
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 mb-1">Denver Urban Canopy</h4>
-                      <p className="text-sm text-gray-600">Denver, Colorado - High-altitude food forest demonstration site</p>
+                      <h4 className="font-bold text-gray-900 mb-1">Bandra Coastal Greens</h4>
+                      <p className="text-sm text-gray-600">Mumbai, Maharashtra - Saline-resistant planting & public space revival</p>
                       <p className="text-xs text-teal-700 font-medium mt-1">Active since 2021</p>
                     </div>
                   </div>

@@ -1,0 +1,1 @@
+export const WEBHOOK_URL = 'https://n8n.sanjeevaninutraceuticals.com/webhook-test/b846cdfc-ebe1-4d23-a33e-1117cf6df7de';

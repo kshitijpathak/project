@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { Leaf, Users, CheckSquare, ClipboardList, FileText, Shovel, Heart, Mail, Phone, ChevronDown } from 'lucide-react';
 import { ConsultationForm } from '../components/ConsultationForm';
+import { FAQ } from '../components/FAQ';
 import heroVideo from '../assets/Rooftop_Transformation_to_Luxury_Garden.mp4';
+import balconygreens from '../assets/gallery/balconygreens.jpg'
+import communityspace from '../assets/gallery/communityspace.jpg'
+import modernterrace from '../assets/gallery/modernterrace.jpg'
+import privateoasis from '../assets/gallery/privateoasis.jpg'
+import rooftopgarden from '../assets/gallery/rooftopgarden.jpg'
+import waterwise from '../assets/gallery/waterwise.jpg'
 
 // A simple gallery item component for visual consistency
 const GalleryItem = ({ src, alt, title }: { src: string, alt: string, title: string }) => (
@@ -216,12 +223,12 @@ export default function RetailServices() {
             <p className="text-lg text-gray-600">Explore projects that showcase creative rooftop, terrace, and home garden solutions.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <GalleryItem src="https://placehold.co/600x400/5cb85c/ffffff?text=Lush+Rooftop" alt="Lush rooftop garden" title="Lush Rooftop Garden" />
-            <GalleryItem src="https://placehold.co/600x400/86b049/ffffff?text=Modern+Terrace" alt="Modern terrace garden" title="Modern Terrace" />
-            <GalleryItem src="https://placehold.co/600x400/3e864f/ffffff?text=Private+Oasis" alt="Private home garden oasis" title="Private Oasis" />
-            <GalleryItem src="https://placehold.co/600x400/5a9a4d/ffffff?text=Balcony+Greens" alt="Balcony garden with vegetables" title="Balcony Greens" />
-            <GalleryItem src="https://placehold.co/600x400/2a6f3b/ffffff?text=Water-Wise+Design" alt="Water-wise garden design" title="Water-Wise Design" />
-            <GalleryItem src="https://placehold.co/600x400/77b63e/ffffff?text=Community+Space" alt="Community garden space" title="Community Space" />
+            <GalleryItem src={rooftopgarden} alt="Lush rooftop garden" title="Lush Rooftop Garden" />
+            <GalleryItem src={modernterrace} alt="Modern terrace garden" title="Modern Terrace" />
+            <GalleryItem src={privateoasis} alt="Private home garden oasis" title="Private Oasis" />
+            <GalleryItem src={balconygreens} alt="Balcony garden with vegetables" title="Balcony Greens" />
+            <GalleryItem src={waterwise} alt="Water-wise garden design" title="Water-Wise Design" />
+            <GalleryItem src={communityspace} alt="Community garden space" title="Community Space" />
           </div>
         </section>
 
@@ -267,17 +274,19 @@ export default function RetailServices() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold">Call Us</h4>
-                      <a href="tel:9810397005" className="text-lg text-emerald-100 hover:text-white">
-                        9810397005
+                      <a href="tel:+91 9810397005" className="text-lg text-emerald-100 hover:text-white">
+                        +91 9810397005
                       </a>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </div>                   
           </div>
+          <div className="mt-14">
+              <FAQ />
+          </div>     
         </section>
-
       </div>
     </div>
   );

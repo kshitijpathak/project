@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+// import { supabase } from '../lib/supabase';
+import { submitToN8n } from '../lib/webhookSubmit';
+import { WEBHOOK_URL } from '../config/webhook';
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -18,11 +20,27 @@ export function ContactForm() {
     setSubmitStatus('idle');
 
     try {
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([formData]);
+      // Submit to n8n webhook
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          formName: 'contact',
+          timestamp: new Date().toISOString()
+        }),
+      });
 
-      if (error) throw error;
+      if (!response.ok) throw new Error('Network response was not ok');
+
+      // Also submit to Supabase for backup
+      // const { error } = await supabase
+      //   .from('contact_submissions')
+      //   .insert([formData]);
+
+      // if (error) console.error('Supabase backup error:', error);
 
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -132,40 +150,7 @@ export function ContactForm() {
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}
         </button>
-      </form>
-
-      <div className="mt-8 pt-8 border-t border-gray-200 space-y-4">
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <Mail className="w-5 h-5 text-emerald-600" />
-          </div>
-          <div>
-            <h4 className="font-semibold text-gray-900">Email</h4>
-            <p className="text-gray-600">info@grey2greens.org</p>
-          </div>
-        </div>
-
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <Phone className="w-5 h-5 text-blue-600" />
-          </div>
-          <div>
-            <h4 className="font-semibold text-gray-900">Phone</h4>
-            <p className="text-gray-600">+91 98103 97005</p>
-          </div>
-        </div>
-
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <MapPin className="w-5 h-5 text-amber-600" />
-          </div>
-          <div>
-            <h4 className="font-semibold text-gray-900">Location</h4>
-            <p className="text-gray-600">A-9, Saraswati Vihar, Pitampura,</p>
-            <p className="text-gray-600"> New Delhi, India-110034</p>
-          </div>
-        </div>
-      </div>
+      </form>      
     </div>
   );
 }

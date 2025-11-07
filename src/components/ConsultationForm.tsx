@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Send } from 'lucide-react';
+import { WEBHOOK_URL } from '../config/webhook';
 
 interface ConsultationFormProps {
   onClose?: () => void;
@@ -15,12 +16,49 @@ export const ConsultationForm = ({ onClose, isModal = false }: ConsultationFormP
     projectType: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Handle form submission
-    console.log('Form submitted:', formData);
-    if (onClose) onClose();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          formName: 'consultation',
+          timestamp: new Date().toISOString()
+        }),
+      });
+
+      if (!response.ok) throw new Error('Network response was not ok');
+
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        projectType: '',
+        message: '',
+      });
+      
+      setTimeout(() => {
+        setSubmitStatus('idle');
+        if (onClose) onClose();
+      }, 2000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -132,13 +170,26 @@ export const ConsultationForm = ({ onClose, isModal = false }: ConsultationFormP
         />
       </div>
 
+      {submitStatus === 'success' && (
+        <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+          Thank you for your consultation request! We'll get back to you soon.
+        </div>
+      )}
+
+      {submitStatus === 'error' && (
+        <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+          Something went wrong. Please try again.
+        </div>
+      )}
+
       <div className="flex justify-end">
         <button
           type="submit"
-          className="inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors"
+          disabled={isSubmitting}
+          className="inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Send className="w-5 h-5 mr-2" />
-          Book Consultation
+          {isSubmitting ? 'Submitting...' : 'Book Consultation'}
         </button>
       </div>
     </form>
