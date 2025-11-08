@@ -75,7 +75,7 @@ export const Footer = ({ handleNavigation }: FooterProps) => {
               <div className="flex items-center gap-3 text-gray-400">
                 <Mail className="w-5 h-5 flex-shrink-0 text-emerald-400" />
                 <a href="mailto:info@grey2green.org" className="hover:text-emerald-400 transition-colors">
-                  info@grey2greens.org
+                  grey2greensindia@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-3 text-gray-400">
