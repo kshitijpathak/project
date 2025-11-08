@@ -106,7 +106,7 @@ export const Footer = ({ handleNavigation }: FooterProps) => {
                   <Linkedin className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/grey2greens/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-emerald-600 transition-colors"
