@@ -98,7 +98,7 @@ export const Footer = ({ handleNavigation }: FooterProps) => {
                   <Facebook className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/company/grey2greens"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-emerald-600 transition-colors"
