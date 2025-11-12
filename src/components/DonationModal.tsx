@@ -45,23 +45,23 @@ export const DonationModal = ({ onClose }: ModalProps) => {
               <div>
                 <strong className="text-gray-700">Account Name:</strong>
                 {/* --- IMPORTANT: Replace with your details --- */}
-                <p className="text-gray-600">[Grey to Green Foundation]</p>
+                <p className="text-gray-600">GREY2GREENS FOUNDATION</p>
               </div>
               <div>
                 <strong className="text-gray-700">Account Number:</strong>
-                <p className="text-gray-600">[YOUR_ACCOUNT_NUMBER]</p>
+                <p className="text-gray-600">50200066062632</p>
               </div>
               <div>
                 <strong className="text-gray-700">Bank Name:</strong>
-                <p className="text-gray-600">[YOUR_BANK_NAME]</p>
+                <p className="text-gray-600">HDFC BANK</p>
               </div>
               <div>
                 <strong className="text-gray-700">IFSC Code:</strong>
-                <p className="text-gray-600">[YOUR_IFSC_CODE]</p>
+                <p className="text-gray-600">HDFC0000158</p>
               </div>
               <div>
                 <strong className="text-gray-700">Account Type:</strong>
-                <p className="text-gray-600">[Current / Savings]</p>
+                <p className="text-gray-600">Current</p>
               </div>
             </div>
           </div>

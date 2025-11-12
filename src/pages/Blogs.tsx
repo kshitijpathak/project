@@ -29,7 +29,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => (
         </div>
       </div>
       <Link 
-        to={`/blog/${post.slug}`} 
+        to={`/blogs/${post.slug}`} 
         className="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors"
       >
         Read More →
@@ -86,7 +86,7 @@ export default function Blog() {
                   </div>
                 </div>
                 <Link
-                  to={`/blog/${featuredPost.slug}`}
+                  to={`/blogs/${featuredPost.slug}`}
                   className="px-8 py-3 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors"
                 >
                   Read Full Story

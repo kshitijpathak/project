@@ -3,7 +3,6 @@ import logo from '../assets/grey2greenlogo.png';
 
 interface HeaderProps {
   activeSection: string;
-  // This prop has changed! It's no longer scrollToSection
   handleNavigation: (sectionId: string) => void;
 }
 
@@ -60,7 +59,6 @@ export const NavHeader = ({ activeSection, handleNavigation }: HeaderProps) => {
             <button
               onClick={() => handleNavigation('retail')}
               className={`font-medium transition-colors ${
-                // This highlighting is now much simpler and more reliable
                 location.pathname === '/retail-services'
                   ? 'text-emerald-700 font-bold'
                   : 'text-gray-700 hover:text-emerald-600'
@@ -71,7 +69,7 @@ export const NavHeader = ({ activeSection, handleNavigation }: HeaderProps) => {
             <button
               onClick={() => handleNavigation('blogs')}
               className={`font-medium transition-colors ${
-                location.pathname === '/blogs' // Example for when you add blogs
+                location.pathname === '/blogs'
                   ? 'text-emerald-700 font-bold'
                   : 'text-gray-700 hover:text-emerald-600'
               }`}
