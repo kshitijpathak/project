@@ -40,7 +40,7 @@ const teamMembers: TeamMember[] = [
   {
     name: 'Dr. Rajesh Kumar',
     image: rkTeamImg,
-    role: '',
+    role: 'Horticulture Consultant',
     description: ''
   }
 ];
