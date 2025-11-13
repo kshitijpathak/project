@@ -36,7 +36,7 @@ const teamMembers: TeamMember[] = [
     image: kpTeamImg,
     role: 'Technical Lead',
     description: 'Mr. Kshitij provides technical expertise in native species selection, soil management, and sustainable agricultural practices for our food forest projects.'
-  };
+  },
   {
     name: 'Dr. Rajesh Kumar',
     image: rkTeamImg,
