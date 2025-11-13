@@ -3,6 +3,7 @@ import akaTeamImg from '/src/assets/teamimages/Dr Agnihotri.jpg';
 import ksTeamImg from '/src/assets/teamimages/Ms Kshyama.png';
 import ssaTeamImg from '/src/assets/teamimages/Mr Shubhendu.png';
 import kpTeamImg from '/src/assets/teamimages/Mr. Kshitij.png';
+import rkTeamImg from '/src/assets/teamimages/Dr. Rajesh.png';
 
 interface TeamMember {
   name: string;
