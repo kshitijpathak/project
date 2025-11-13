@@ -35,6 +35,12 @@ const teamMembers: TeamMember[] = [
     image: kpTeamImg,
     role: 'Technical Lead',
     description: 'Mr. Kshitij provides technical expertise in native species selection, soil management, and sustainable agricultural practices for our food forest projects.'
+  };
+  {
+    name: 'Mr. Kshitij Pathak',
+    image: kpTeamImg,
+    role: 'Technical Lead',
+    description: 'Mr. Kshitij provides technical expertise in native species selection, soil management, and sustainable agricultural practices for our food forest projects.'
   }
 ];
 
