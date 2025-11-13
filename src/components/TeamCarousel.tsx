@@ -41,7 +41,7 @@ const teamMembers: TeamMember[] = [
     name: 'Dr. Rajesh Kumar',
     image: rkTeamImg,
     role: 'Horticulture Consultant',
-    description: 'Dr. Rajesh combines 27 years of horticultural expertise with proven leadership in large-scale landscape development. His vision, applied to major national projects like the Central Vista, drives our mission to create iconic and sustainable green environments.'
+    description: "Dr. Rajesh's 27 years of horticultural leadership , including major national projects like the Central Vista , guides our mission to transform large-scale landscapes."
   }
 ];
 
